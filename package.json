@@ -2,6 +2,7 @@
   "name": "vertiscroll",
   "displayName": "VertiScroll",
   "description": "",
+  "publisher": "WillCuny",
   "version": "0.0.1",
   "engines": {
     "vscode": "^1.79.0"
@@ -13,8 +14,8 @@
   "main": "./extension.js",
   "contributes": {
     "commands": [{
-      "command": "vertiscroll.helloWorld",
-      "title": "Hello World"
+      "command": "vertiscroll.enable",
+      "title": "VertiScroll"
     }]
   },
   "scripts": {

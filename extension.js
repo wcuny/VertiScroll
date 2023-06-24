@@ -6,7 +6,7 @@ const vscode = require('vscode');
 function activate(context) {
     console.log('Congratulations, your extension "vertiscroll" is now active!');
 
-    let disposable = vscode.commands.registerCommand('vertiscroll.helloWorld', function () {
+    let disposable = vscode.commands.registerCommand('vertiscroll.enable', function () {
         var allTabs = vscode.window.visibleTextEditors;
         var leftTab = allTabs[0];
         var rightTab = allTabs[1];
