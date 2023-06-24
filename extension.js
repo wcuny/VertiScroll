@@ -55,10 +55,7 @@ function activate(context) {
 				vscode.commands.executeCommand('workbench.action.nextEditor');
 			}
 		}
-		//add a scroll listener
-		vscode.window.onDidChangeTextEditorVisibleRanges(function(){
-			calculate();
-		});
+		calculate();
 	});
 
 	context.subscriptions.push(disposable);
