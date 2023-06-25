@@ -4,31 +4,35 @@ const vscode = require('vscode');
  * @param {vscode.ExtensionContext} context
  */
 function activate(context) {
-    console.log('Congratulations, your extension "vertiscroll" is now active!');
-
     let disposable = vscode.commands.registerCommand('vertiscroll.enable', function () {
         var allTabs = vscode.window.visibleTextEditors;
-        var leftTab = allTabs[0];
-        var rightTab = allTabs[1];
-        function calculate() {
+        var tab0 = allTabs[0];
+        var tab1 = allTabs[1];
+        function calculate2tabs() {
             var activeTab = vscode.window.activeTextEditor;
             var activeTabBottomLine = activeTab.visibleRanges[0].end.line;
 
-            if (activeTab === leftTab) {
-                var rightTabTopLine = activeTabBottomLine + 1;
-                rightTab.revealRange(
-                    new vscode.Range(rightTabTopLine, 0, rightTabTopLine, 0),
+            if (activeTab === tab0) {
+                var tab1TopLine = activeTabBottomLine;
+                tab1.revealRange(
+                    new vscode.Range(tab1TopLine, 0, tab1TopLine, 0),
                     vscode.TextEditorRevealType.AtTop
                 );
-            } else if (activeTab === rightTab) {
-                var leftTabTopLine = activeTabBottomLine + 1;
-                leftTab.revealRange(
-                    new vscode.Range(leftTabTopLine, 0, leftTabTopLine, 0),
+            } else if (activeTab === tab1) {
+                var tab0TopLine = activeTabBottomLine;
+                tab0.revealRange(
+                    new vscode.Range(tab0TopLine, 0, tab0TopLine, 0),
                     vscode.TextEditorRevealType.AtTop
                 );
             }
         }
-		setInterval(calculate, 1000 / 120);
+
+        if(allTabs.length >= 2){
+		    setInterval(calculate2tabs, 1000 / 120);
+        }
+        else {
+            vscode.window.showErrorMessage('You need to have exactly two tabs open to use this extension.');
+        }
     });
 
     context.subscriptions.push(disposable);
